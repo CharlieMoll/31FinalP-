@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
+    int i;
     printf("Hello, World\n");
     printf("31 card game\n");
     return 0;
