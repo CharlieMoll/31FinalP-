@@ -7,7 +7,7 @@
 
 #include "main.h"
 int main(void){
-        
+    int j = 4;
     PrintHello();
     
     
