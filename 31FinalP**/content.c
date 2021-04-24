@@ -35,7 +35,6 @@ Card * ReturnNthCardAddress(Card *HN, int N) { //#M
   return(HN);
 }
 
-
 void AddNthCard(Card **HN, Card *C2A, int N) { //#M
   Card *tmp;
   if (N > 1) {
