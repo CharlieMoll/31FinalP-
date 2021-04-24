@@ -6,11 +6,10 @@
 //
 
 #include "main.h"
+
 int main(void){
-    int j = 4;
-    PrintHello();
-    
-    
+
+    printf("Hello World");
     
     
     return 0;
