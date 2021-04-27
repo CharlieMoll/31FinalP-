@@ -21,7 +21,7 @@ Card *RemoveNthCard(Card **HN, int N);
 void AddNthCard(Card **HN, Card *C2A, int N);
 void SwapCards(Card **HN,int C1,int C2);
 void ShuffleCard(Card **HN);
-
+void CreateDeck(card** HN);
 int CountCards(Card *HN);
 
 
