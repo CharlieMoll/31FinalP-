@@ -116,3 +116,33 @@ void CreateDeck(card** HN) {
 		}
 	}
 }
+
+//Code is from McBride lecture
+void ReadInCards(card** HN) {
+	card* tmp;
+	char Line[1000];
+	FILE* filePtr;
+	int i, j, cnt = 0;
+
+	filePtr = fopen("cards.txt", "r");
+	assert(filePtr != NULL);
+	while (!feof(filePtr)) {
+		fgets(Line, 1000, filePtr);
+		cnt++;
+	}
+	rewind(filePtr);
+
+	*HN = (card*)calloc(sizeof(card), 1);
+	tmp = *HN;
+	for (i = 1; i <= cnt; i++) {
+
+		fscanf(filePtr, "%d", &tmp->value); // read the value : points in the game
+		my_fgets_str(tmp->suit, 9, filePtr); // read the suit
+		my_fgets_str(tmp->rank, 9, filePtr); // read the rank
+
+		if (i < cnt)
+			tmp->pt = (card*)calloc(sizeof(card), 1);
+		tmp = tmp->pt;
+	}
+	fclose(ptr);
+}
