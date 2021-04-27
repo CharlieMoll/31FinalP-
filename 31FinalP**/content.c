@@ -94,3 +94,25 @@ void ShuffleCard(Card **HN){      //#M
         SwapCards(HN, i, j);
     }
 }
+
+void CreateDeck(card** HN) {
+	card* tmp;
+	char* suits[4] = { "diamonds", "spades", "hearts", "clubs" };
+	char* ranks[13]{ "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace" };
+	int pointValues[13]{ 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10 };
+
+	*HN = (card*)calloc(sizeof(card), 1);
+	tmp = *HN
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < 13; ++j) {
+			// copy suit into tmp->suit
+			strcpy(tmp->suit, suits[i]);
+			strcpy(tmp->rank, ranks[j]);
+			tmp->value = pointsValues[j];
+			if (((i + 1) * (j + 1)) != 52) {
+				tmp->pt = (card*)calloc(sizeof(card), 1);
+				tmp = tmp->pt;
+			}
+		}
+	}
+}
