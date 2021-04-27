@@ -23,6 +23,7 @@ void SwapCards(Card **HN,int C1,int C2);
 void ShuffleCard(Card **HN);
 void CreateDeck(card** HN);
 int CountCards(Card *HN);
+void ReadInCards(card** HN);
 
 
 #endif /* main_h */
