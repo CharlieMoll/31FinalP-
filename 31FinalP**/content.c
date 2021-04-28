@@ -117,6 +117,16 @@ void CreateDeck(card** HN) {
 	}
 }
 
+// Code is from McBride lecture
+void my_fgets_str(char* userchar, int max_chars, FILE* fptr) {
+	do {
+		fgets(userchar, max_chars, fptr);
+	} while ((userchar[0] == ' ') || (userchar[0] == '\n'));
+	while (userchar[strlen(userchar) - 1] == '\n')
+		userchar[strlen(userchar) - 1] = '\0';
+	return;
+}
+
 //Code is from McBride lecture
 void ReadInCards(card** HN) {
 	card* tmp;
