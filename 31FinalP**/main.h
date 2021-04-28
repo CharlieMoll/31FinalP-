@@ -18,6 +18,7 @@
 Card * ReturnNthCardAddress(Card *HN, int N);
 Card *RemoveNthCard(Card **HN, int N);
 
+void my_fgets_str(char* userchar, int max_chars, FILE* fptr);
 void AddNthCard(Card **HN, Card *C2A, int N);
 void SwapCards(Card **HN,int C1,int C2);
 void ShuffleCard(Card **HN);
