@@ -24,6 +24,7 @@ void ShuffleCard(Card **HN);
 void CreateDeck(card** HN);
 int CountCards(Card *HN);
 void ReadInCards(card** HN);
+void PlayGame(player* player1, player* player2, int potOfMoney, card* stockPile, card* discardPile);
 
 
 #endif /* main_h */
