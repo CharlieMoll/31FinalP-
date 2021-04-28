@@ -146,3 +146,154 @@ void ReadInCards(card** HN) {
 	}
 	fclose(ptr);
 }
+
+void PlayGame(player *player1, player *player2, int potOfMoney, card *stockPile, card* discardPile) {
+	char userResponseChar;
+	int userResponseInt;
+	char user1ResponseBet;
+	int player1BettingMoney;
+	int player2RaiseBet;
+	bool gameIsPlaying = true;
+	int player1Points
+	int player2Points
+	char user1ResponseGame;
+	char user2ResponseGame;
+	int user1ResponseGame2;
+	int user2ResponseGame2;
+	char user1ResponseGame3;
+	bool gameEndingNextPlayer;
+	card* tmp;
+
+	// betting round:
+
+	do {
+
+		// Betting part of the round  
+		printf("Player 1, how much money do you want to bet?\n");
+		scanf("%d", &player1BettingMoney);
+		player1->money -= player1BettingMoney;
+		potOfMoney += player1BettingMoney;
+
+		printf("Player 2, do you want to meet the bet of player 1 of %d dollars(y/n)?\n", player1BettingMoney);
+		scanf("%c", &user2ResponseBet);
+		if (user2ResponseBet == 'n') {
+			// player 1 takes the money. game ends.
+			player1->money += potOfMoney;
+			break;
+		}
+
+		// game continues 
+		player2->money -= player1BettingMoney;
+		potOfMoney += player1BettingMoney;
+
+		printf("Player 2, by how much do you want to raise the bet?");
+		scanf("%d", &player2RaiseBet);
+
+		player2->money -= player2RaiseBet;
+		potOfMoney += player2RaiseBet;
+
+		if (player2RaiseBet > 0) {
+			printf("Player 1, do you want to meet the raise of player 2 of %d dollars (y/n)?", player2RaiseBet);
+			scanf("%c", &user1ResponseBet);
+			if (user1ResponseBet == 'n') {
+				// player 2 takes the money. game ends. 
+				break;
+			}
+			// player1 pays the bet raise
+			player1->money -= player2RaiseBet;
+			potOfMoney += player2RaiseBet;
+		}
+
+		// we are done with betting
+		// now card playing
+
+		printf("Player 1, would you like to pick a card from the discard pile (enter 'P') or the deck/stock pile (enter 'D')?\n");
+		scanf("%c", user1ResponseGame);
+		if (user1ResponseGame == 'P' || user1ResponseGame == 'p') {
+			tmp = RemoveNthCard(&discardPile, 1);
+			AddNthCard(&(player1->playerCards), tmp, 1);
+		}
+		else if (user1ResponseGame == 'D' || user1ResponseGame == 'd') {
+			tmp = RemoveNthCard(&stockPile, 1);
+			AddNthCard(&(player1->playerCards), tmp, 1);
+		}
+
+		// need to ask player 1 which card they would like to put down in the discard pile
+
+		printf("Player 1, which card would you like to put in the discard pile? (card 1, 2, 3, or 4)");
+		scanf("%d", &user1ResponseGame2);
+
+		if (user1ResponseGame2 > 4 || user1ResponseGame2 < 1) {
+			user1ResponseGame2 = 1;
+		}
+
+		tmp = RemoveNthCard(&(player1->playerCards), user1ResponseGame2);
+		AddNthCard(&discardPile, tmp, 1);
+
+		// check if player 2 wanted to end the game; if yes, then end the game
+		if (gameEndingNextPlayer == true)
+		{
+			gameIsPlaying = false;
+			break;
+		}
+
+		printf("Player 1, do you have 31 points in your hand (y or n)?\n");
+		scanf("%c", &user1ResponseGame3);
+
+		if (user1ResponseGame3 == 'y') {
+			gameIsPlaying = false;
+			break;
+		}
+		else if (user1ResponseGame3 == 'n') {
+			printf("Player 1, do you want to end the game (y or n)?");
+			scanf("%c", &user1ResponseGame3);
+			if (user1ResponseGame3 == 'y') {
+				gameEndingNextPlayer = true; 
+			}
+		}
+
+		printf("Player 2, would you like to pick a card from the discard pile (enter 'P') or the deck/stock pile (enter 'D')?\n");
+		scanf("%c", user2ResponseGame);
+		if (user2ResponseGame == 'P' || user2ResponseGame == 'p') {
+			tmp = RemoveNthCard(&discardPile, 1);
+			AddNthCard(&(player2->playerCards), tmp, 1);
+		}
+		else if (user2ResponseGame == 'D' || user2ResponseGame == 'd') {
+			tmp = RemoveNthCard(&stockPile, 1);
+			AddNthCard(&(player2->playerCards), tmp, 1);
+		}
+
+		printf("Player 2, which card would you like to put in the discard pile? (card 1, 2, 3, or 4)");
+		scanf("%d", user2ResponseGame2);
+
+		if (user2ResponseGame2 > 4 || user2ResponseGame2 < 1) {
+			user2ResponseGame2 = 1;
+		}
+
+		tmp = RemoveNthCard(&(player2->playerCards), user2ResponseGame2);
+		AddNthCard(&discardPile, tmp, 1);
+
+		// check if player1 wanted to end the game; if yes, then end the game
+		if (gameEndingNextPlayer == true)
+		{
+			gameIsPlaying = false;
+			break;
+		}
+
+		printf("Player 2, do you have 31 points in your hand (y or n)?\n");
+		scanf("%c", &user1ResponseGame3);
+
+		if (user1ResponseGame3 == 'y') {
+			gameIsPlaying = false;
+			break;
+		}
+		else if (user1ResponseGame3 == 'n') {
+			printf("Player 2, do you want to end the game (y or n)?");
+			scanf("%c", &user1ResponseGame3);
+			if (user1ResponseGame3 == 'y') {
+				gameEndingNextPlayer = true;
+			}
+		}
+
+	} while (gameIsPlaying == true);
+}
