@@ -157,6 +157,27 @@ void ReadInCards(card** HN) {
 	fclose(ptr);
 }
 
+void DealCards(card** HN, player *player1, player *player2, card *stockPile) {
+	card* tmp;
+
+	// deal first 3 cards from the stockpile to player p1 
+	for (int i = 0; i < 3; i++)
+	{
+		tmp = RemoveNthCard(&stockPile, 1);
+		AddNthCard(&(player1->playerCards), tmp, 1);
+	}
+	printf("There are %d cards in the stockPile - after dealing to first player.\n", CountCards(HN));
+
+	// deal first 3 cards from the stockpile to player p2 
+	for (int i = 0; i < 3; i++)
+	{
+		tmp = RemoveNthCard(&stockPile, 1);
+		AddNthCard(&(player2->playerCards), tmp, 1);
+	}
+	printf("There are %d cards in the stockPile - after dealing to second player.\n", CountCards(HN));
+
+}
+
 void PlayGame(player *player1, player *player2, int potOfMoney, card *stockPile, card* discardPile) {
 	char userResponseChar;
 	int userResponseInt;
