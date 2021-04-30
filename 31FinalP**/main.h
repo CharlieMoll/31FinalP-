@@ -30,6 +30,7 @@ void PlayGame(player* player1, player* player2, int potOfMoney, card* stockPile,
 void DisplayBoard(player* player1, player* player2, int potOfMoney, card* discardPile, char* question, int playerInTurn);
 void DisplayHand(player* playerDisplay);
 void DisplayCard(card* cardDisplay);
+int AddPoints(card* HN);
 
 
 #endif /* main_h */
