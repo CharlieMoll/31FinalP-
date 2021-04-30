@@ -307,3 +307,68 @@ void PlayGame(player *player1, player *player2, int potOfMoney, card *stockPile,
 
 	} while (gameIsPlaying == true);
 }
+
+void DisplayHand(player* playerDisplay) {
+	card* tmp;
+	int cardCounter = 1;
+
+	tmp = playerDisplay->playerCards;
+	while (tmp != NULL) {
+		printf("The card #%d: ", cardCounter);
+		DisplayCard(tmp);
+		cardCounter++;
+	}
+}
+
+void DisplayCard(card* cardDisplay)
+{
+	printf("Suit is: %s, and the face value is %s\n", cardDisplay->suit, cardDisplay->rank);
+}
+
+// displays everything: 
+// display the question for the player that has the turn
+// for each player display money available
+// for the player that has the turn, display cards
+// display the pot money amount
+// display the top card of the discard pile
+
+void DisplayBoard(player* player1, player* player2, int potOfMoney, card* discardPile, char* question, int playerInTurn) {
+	
+	// clear the screen
+	printf("\033c");
+
+	printf("=============================\n\n");
+
+	printf("%s\n\n", question);
+	
+	if (playerInTurn == 1)
+	{
+		printf("Player 1's money: %d \n", player1->money);
+		printf("Player 1's cards: \n");
+		DisplayHand(player1);
+		printf("\n");
+
+		printf("Player 2's money: %d \n", player2->money);
+		printf("\nPlayer 2's cards: Not Visible.\n");
+	}
+
+	if (playerInTurn == 2)
+	{
+		printf("Player 1's money: %d \n", player1->money);
+		printf("\nPlayer 1's cards: Not Visible.\n\n");
+
+		printf("Player 2's money: %d \n", player2->money);
+		printf("Player 2's cards: \n");
+		DisplayHand(player2);
+		printf("\n");
+	}
+
+	printf("Pot size is %d dollars\n", potOfMoney);
+
+	printf("Top card on the discard pile is:\n");
+	card* topDiscardPile = ReturnNthCardsAddress(discardPile, 1);
+	DisplayCard(topDiscardPile);
+
+	printf("=============================\n\n");
+}
+
