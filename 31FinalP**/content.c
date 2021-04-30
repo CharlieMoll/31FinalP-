@@ -392,4 +392,25 @@ void DisplayBoard(player* player1, player* player2, int potOfMoney, card* discar
 
 	printf("=============================\n\n");
 }
-
+int AddPoints(card *HN){ //store suit as int in an array, store face value in array
+    int points = 0;
+    card *tmp;
+    tmp = HN;
+    int FaceVal[3];
+    int suit[3];
+    
+    if(tmp->suit == tmp->suit == tmp->suit){ //need this to show each individual suit using array
+        points = tmp->value + tmp->value + tmp->value;
+    
+    }
+    else if(tmp->suit == tmp->suit){ //use array 
+        points = tmp->value + tmp->value;
+    }
+    else{
+        points = tmp->value;
+    }
+    
+    
+    
+    return points;
+}
