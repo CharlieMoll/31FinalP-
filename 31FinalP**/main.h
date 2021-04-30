@@ -26,6 +26,9 @@ void CreateDeck(card** HN);
 int CountCards(Card *HN);
 void ReadInCards(card** HN);
 void PlayGame(player* player1, player* player2, int potOfMoney, card* stockPile, card* discardPile);
+void DisplayBoard(player* player1, player* player2, int potOfMoney, card* discardPile, char* question, int playerInTurn);
+void DisplayHand(player* playerDisplay);
+void DisplayCard(card* cardDisplay);
 
 
 #endif /* main_h */
