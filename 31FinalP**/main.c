@@ -26,22 +26,9 @@ int main(void){
 	}
 	
 	printf("There are %d cards in the stockPile - beginning of the game.\n", CountCards(HN));
-
-	// deal first 3 cards from the stockpile to player p1 
-	for (int i = 0; i < 3; i++)
-	{
-		tmp = RemoveNthCard(&stockPile, 1);
-		AddNthCard(&(player1->playerCards), tmp, 1);
-	}
-	printf("There are %d cards in the stockPile - after dealing to first player.\n", CountCards(HN));
-
-	// deal first 3 cards from the stockpile to player p2 
-	for (int i = 0; i < 3; i++)
-	{
-		tmp = RemoveNthCard(&stockPile, 1);
-		AddNthCard(&(player2->playerCards), tmp, 1);
-	}
-	printf("There are %d cards in the stockPile - after dealing to second player.\n", CountCards(HN));
+	
+	// Deals cards to each player
+	DealCards(&player1, &player2);
 
 	// initialize the discard pile
 
