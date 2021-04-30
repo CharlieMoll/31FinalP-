@@ -414,3 +414,48 @@ int AddPoints(card *HN){ //store suit as int in an array, store face value in ar
     
     return points;
 }
+
+// The new AddPoints Function
+
+int AddPoints(card* HN) { //store suit as int in an array, store face value in array
+	int points = 0;
+	card* tmp;
+	tmp = HN;
+	int FaceVal[3];
+	char* suit[3];
+	int cardCounter = 0;
+
+	// walk over the linked list
+	while (tmp != NULL) {
+		suit[cardCounter] = tmp->suit;
+		FaceVal[cardCounter] = tmp->value;
+		cardCounter++;
+	}
+
+	if (strcmp(suit[0], suit[1]) == 0 && strcmp(suit[1], suit[2]) == 0)
+	{
+		points = FaceVal[0] + FaceVal[1] + FaceVal[2];
+	}
+	else if (strcmp(suit[0], suit[1]) == 0)
+	{
+		points = FaceVal[0] + FaceVal[1];
+	}
+	else if (strcmp(suit[1], suit[2]) == 0)
+	{
+		points = FaceVal[1] + FaceVal[2];
+	}
+	else if (strcmp(suit[0], suit[2]) == 0)
+	{
+		points = FaceVal[0] + FaceVal[2];
+	}
+	else if (FaceVal[0] == FaceVal[1] && FaceVal[1] == FaceVal[2])
+	{
+		points = 30;
+	}
+	else {
+		points = max(FaceVal[0], FaceVal[1]);
+		points = max(points, FaceVal[2]);
+	}
+	
+	return points;
+}
